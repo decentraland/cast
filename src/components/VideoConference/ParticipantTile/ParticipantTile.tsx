@@ -95,7 +95,7 @@ export function ParticipantTile({
       ...trackRef.participant,
       name: profiles[trackRef.participant.identity]?.avatars[0]?.name ?? trackRef.participant.identity
     }),
-    [trackRef.participant]
+    [trackRef.participant, profiles]
   ) as Participant
 
   return (
