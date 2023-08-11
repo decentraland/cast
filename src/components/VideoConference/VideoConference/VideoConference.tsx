@@ -3,7 +3,6 @@ import { isEqualTrackRef, isTrackReference, log, isWeb } from '@livekit/componen
 import {
   CarouselView,
   ConnectionStateToast,
-  ControlBar,
   FocusLayout,
   FocusLayoutContainer,
   GridLayout,
@@ -14,7 +13,9 @@ import {
   useTracks
 } from '@livekit/components-react'
 import { RoomEvent, Track } from 'livekit-client'
+import { getLocalStream } from '../../../utils/localStream'
 import Chat from '../Chat'
+import { ControlBar } from '../ControlBar'
 import ParticipantTile from '../ParticipantTile'
 import { VideoConferenceProps } from './VideoConference.types'
 import type { TrackReferenceOrPlaceholder, WidgetState } from '@livekit/components-core'
@@ -58,6 +59,10 @@ export function VideoConference({ chatMessageFormatter, ...props }: VideoConfere
 
   const focusTrack = usePinnedTracks(layoutContext)?.[0]
   const carouselTracks = tracks.filter(track => !isEqualTrackRef(track, focusTrack))
+
+  React.useEffect(() => {
+    getLocalStream()
+  }, [])
 
   React.useEffect(() => {
     // If screen share tracks are published, and no pin is set explicitly, auto set the screen share.
