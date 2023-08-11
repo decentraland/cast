@@ -1,13 +1,11 @@
 {
-  "conference": {
-    "pre_join": {
-      "join_room": "Join Room",
-      "microphone_label": "Microphone",
-      "camera_label": "Camera",
-      "username_label": "Username",
-      "camera_off": "Camera is off",
-      "camera_starting": "Camera is starting..."
-    }
+  "pre_join": {
+    "join_room": "Join Room",
+    "microphone_label": "Microphone",
+    "camera_label": "Camera",
+    "username_label": "Username",
+    "camera_off": "Camera is off",
+    "camera_starting": "Camera is starting..."
   },
   "connect_to_world": {
     "title": "Meet on Decentraland",
