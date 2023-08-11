@@ -27,12 +27,23 @@ function ConnectToWorld(props: Props) {
     if (!loggedInAddress && !isLoading) {
       navigate(locations.signIn(locations.root(worldsContentServerUrl)))
     }
+
+    return () => {
+      setError('')
+      setSelectedServer('')
+      setAvailableServers([])
+    }
   }, [isLoading, loggedInAddress])
 
   useEffect(() => {
     if (previouslyLoadedServers) {
       setAvailableServers(previouslyLoadedServers)
       setSelectedServer(previouslyLoadedServers[0])
+    }
+
+    return () => {
+      setAvailableServers([])
+      setSelectedServer('')
     }
   }, [previouslyLoadedServers, setAvailableServers])
 

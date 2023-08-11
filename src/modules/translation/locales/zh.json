@@ -1,4 +1,14 @@
 {
+  "conference": {
+    "pre_join": {
+      "join_room": "加入房间",
+      "microphone_label": "麦克风",
+      "camera_label": "相机",
+      "username_label": "用户名",
+      "camera_off": "相机已关闭",
+      "camera_starting": "相机正在启动..."
+    }
+  },
   "connect_to_world": {
     "title": "在 Decentraland 上见面",
     "description": "选择您想要连接的世界并开始流式传输。",

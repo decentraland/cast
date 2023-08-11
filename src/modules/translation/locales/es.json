@@ -1,4 +1,14 @@
 {
+  "conference": {
+    "pre_join": {
+      "join_room": "Unirme a la sala",
+      "microphone_label": "Micrófono",
+      "camera_label": "Cámara",
+      "username_label": "Nombre de usuario",
+      "camera_off": "La cámara está apagada",
+      "camera_starting": "La cámara se está iniciando..."
+    }
+  },
   "connect_to_world": {
     "title": "Reunirse en Decentraland",
     "description": "Elija el mundo al que desea conectarse y comience a transmitir.",

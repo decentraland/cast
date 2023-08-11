@@ -1,0 +1,35 @@
+.PreJoin:global(.lk-prejoin) {
+  background: var(--background);
+  padding: 24px 28px 50px;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 20px;
+}
+
+.PreJoin .buttonGroupContainer {
+  width: 100%;
+}
+
+.PreJoin :global(.lk-button-group-container .lk-button-group.audio .lk-button),
+.PreJoin :global(.lk-button-group-container .lk-button-group.video .lk-button) {
+  background-color: var(--popup);
+  color: var(--text-on-primary);
+}
+
+.PreJoin :global(.lk-video-container .lk-camera-off-note) {
+  background-color: var(--popup);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 769px) {
+  .PreJoin {
+    min-width: 700px;
+  }
+}
