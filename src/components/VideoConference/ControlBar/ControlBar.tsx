@@ -9,13 +9,13 @@ import {
   TrackToggle,
   useLocalParticipantPermissions,
   useMaybeLayoutContext,
-  usePreviewTracks,
   useRoomContext
 } from '@livekit/components-react'
 import { LocalAudioTrack, LocalVideoTrack, Track } from 'livekit-client'
 import ChatIcon from '../../../assets/icons/ChatIcon'
 import LeaveIcon from '../../../assets/icons/LeaveIcon'
 import { useMediaQuery } from '../../../hooks/useMediaQuery'
+import { usePreviewTracks } from '../../../hooks/usePreviewTracks'
 import { mergeProps } from '../../../utils/mergeProps'
 import { ControlBarProps, DEFAULT_USER_CHOICES } from './ControlBar.types'
 
