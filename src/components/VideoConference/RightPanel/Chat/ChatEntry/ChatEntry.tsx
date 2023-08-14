@@ -1,7 +1,8 @@
-import { tokenize, createDefaultGrammar, ReceivedChatMessage } from '@livekit/components-core'
 import * as React from 'react'
-import Profile from 'decentraland-dapps/dist/containers/Profile'
+import { tokenize, createDefaultGrammar, ReceivedChatMessage } from '@livekit/components-core'
 import { MessageFormatter } from '@livekit/components-react'
+import Profile from 'decentraland-dapps/dist/containers/Profile'
+import styles from './ChatEntry.module.css'
 
 /**
  * ChatEntry composes the HTML div element under the hood, so you can pass all its props.
@@ -37,7 +38,7 @@ export function ChatEntry({ entry, hideName = false, hideTimestamp = false, mess
   }, [entry.message, messageFormatter])
   const time = new Date(entry.timestamp)
   const locale = navigator ? navigator.language : 'en-US'
-
+  console.log(entry.from)
   return (
     <li
       className="lk-chat-entry"
