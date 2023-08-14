@@ -1,0 +1,9 @@
+.ControlBarContainer {
+  position: relative;
+}
+
+.ControlBarRightButtonGroup {
+  position: absolute;
+  right: 0;
+  display: flex;
+}
