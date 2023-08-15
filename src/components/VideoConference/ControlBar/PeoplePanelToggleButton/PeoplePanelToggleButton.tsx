@@ -21,7 +21,7 @@ export const PeoplePanelToggleButton: React.FC<Props> = ({ peopleCount = 0, onCl
   }, [layoutContext])
 
   return (
-    <div className={styles.container}>
+    <>
       <button
         className={classNames('lk-button', styles.button, { [styles.buttonActive]: isPeoplePanelActive })}
         onClick={onClick ?? handleTogglePeoplePanel}
@@ -29,7 +29,7 @@ export const PeoplePanelToggleButton: React.FC<Props> = ({ peopleCount = 0, onCl
         <PeopleIcon className={styles.peopleIcon} />
       </button>
       <Label size="small" circular className={styles.label} content={peopleCount} />
-    </div>
+    </>
   )
 }
 
