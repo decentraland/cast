@@ -37,7 +37,7 @@ export function ChatEntry({ entry, hideName = false, hideTimestamp = false, mess
   }, [entry.message, messageFormatter])
   const time = new Date(entry.timestamp)
   const locale = navigator ? navigator.language : 'en-US'
-  console.log(entry.from)
+
   return (
     <li
       className="lk-chat-entry"

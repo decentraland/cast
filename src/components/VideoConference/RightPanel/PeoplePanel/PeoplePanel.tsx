@@ -6,8 +6,6 @@ import { useLayoutContext } from '../../../../hooks/useLayoutContext'
 import type { Props } from './PeoplePanel.types'
 import styles from './PeoplePanel.module.css'
 
-// import { Profile } from 'decentraland-dapps/dist/modules/profile/types'
-
 /**
  * The PeoplePanel component shows all the participants in a list.
  *
