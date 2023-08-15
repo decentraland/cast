@@ -1,1 +1,1 @@
-export { VideoConference } from './VideoConference'
+export { VideoConference as default } from './VideoConference'

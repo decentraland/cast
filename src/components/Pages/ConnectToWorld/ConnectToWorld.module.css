@@ -63,7 +63,7 @@
 }
 
 @media (min-width: 769px) {
-  .content :global(.SignIn.center) {
+  .ConnectToWorld .content {
     min-width: 700px;
   }
 }
