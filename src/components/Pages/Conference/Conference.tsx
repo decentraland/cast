@@ -7,35 +7,31 @@ import { VideoConference } from '../../VideoConference/'
 import { Props } from './Conference.types'
 import './Conference.css'
 
-const msToMinutes = (ms: number) => Math.round(ms / (60 * 1000))
-
 export default function Conference(props: Props) {
-  const { token, server, loggedInAddress, worldName, worldContentServerUrl } = props
-  const [connectedTime, setConnectedTime] = React.useState<Date>(new Date())
+  const { token, server, worldName, worldContentServerUrl } = props
+  const analytics = getAnalytics()
 
-  const handleUserLeavingMeeting = useCallback(() => {
-    const disconnectedTime = new Date()
-
-    const analytics = getAnalytics()
-    analytics.track(Events.USER_LEAVES_MEETING, {
-      connectedTime,
-      disconnectedTime,
+  const handleConnect = useCallback(() => {
+    analytics.track(Events.CONNECT_MEETING, {
       server,
       token,
       worldName,
-      worldContentServerUrl,
-      loggedInAddress,
-      minutesInMeeting: msToMinutes(disconnectedTime.getTime() - connectedTime.getTime()) // Seems redundant, we already have the connected and disconnected time
+      worldContentServerUrl
     })
-  }, [connectedTime, server, token, loggedInAddress])
-
-  const handleConnect = useCallback(() => {
-    setConnectedTime(new Date())
   }, [])
+
+  const handleDisconnect = useCallback(() => {
+    analytics.track(Events.DISCONNECT_MEETING, {
+      server,
+      token,
+      worldName,
+      worldContentServerUrl
+    })
+  }, [server, token])
 
   useEffect(() => {
     window.onbeforeunload = () => {
-      handleUserLeavingMeeting()
+      handleDisconnect()
     }
 
     return () => {
@@ -51,7 +47,7 @@ export default function Conference(props: Props) {
         connect={true}
         data-lk-theme="default"
         onConnected={handleConnect}
-        onDisconnected={handleUserLeavingMeeting}
+        onDisconnected={handleDisconnect}
       >
         <VideoConference />
       </LiveKitRoom>

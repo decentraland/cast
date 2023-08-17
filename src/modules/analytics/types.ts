@@ -1,3 +1,4 @@
 export enum Events {
-  USER_LEAVES_MEETING = 'User Leaves Meeting'
+  CONNECT_MEETING = 'Connect Meeting',
+  DISCONNECT_MEETING = 'Disconnect Meeting'
 }
