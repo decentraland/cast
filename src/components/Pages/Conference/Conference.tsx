@@ -15,7 +15,6 @@ export default function Conference(props: Props) {
 
   const handleUserLeavingMeeting = useCallback(() => {
     const disconnectedTime = new Date()
-    console.log('User leaves meeting - Time:', disconnectedTime)
 
     const analytics = getAnalytics()
     analytics.track(Events.USER_LEAVES_MEETING, {
