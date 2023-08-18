@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { LiveKitRoom } from '@livekit/components-react'
 import '@livekit/components-styles'
 import { getAnalytics } from 'decentraland-dapps/dist/modules/analytics/utils'
@@ -9,25 +9,29 @@ import './Conference.css'
 
 export default function Conference(props: Props) {
   const { token, server, worldName, worldContentServerUrl } = props
+  const [alreadyDisconnected, setAlreadyDisconnected] = useState(false)
   const analytics = getAnalytics()
 
-  const handleConnect = useCallback(() => {
-    analytics.track(Events.CONNECT_MEETING, {
-      server,
-      token,
-      worldName,
-      worldContentServerUrl
-    })
-  }, [])
+  const track = useCallback(
+    (event: Events) => {
+      if (!worldName || !worldContentServerUrl) return
 
+      analytics.track(event, {
+        worldName,
+        worldContentServerUrl
+      })
+    },
+    [worldName, worldContentServerUrl]
+  )
+
+  const handleConnect = useCallback(() => track(Events.CONNECT), [track])
   const handleDisconnect = useCallback(() => {
-    analytics.track(Events.DISCONNECT_MEETING, {
-      server,
-      token,
-      worldName,
-      worldContentServerUrl
-    })
-  }, [server, token])
+    // This is to avoid tracking the disconnect event twice
+    if (!alreadyDisconnected) {
+      track(Events.DISCONNECT)
+      setAlreadyDisconnected(true)
+    }
+  }, [track, alreadyDisconnected])
 
   useEffect(() => {
     window.onbeforeunload = () => {
