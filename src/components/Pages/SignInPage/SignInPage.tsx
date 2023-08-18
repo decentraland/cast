@@ -16,7 +16,6 @@ const SignInPage = (props: Props) => {
   const navigate = useNavigate()
 
   const handleLearnMore = useCallback(() => {
-    // TODO: should redirect to the feature docs
     window.open(DOCS_URL, '_blank', 'noopener noreferrer')
   }, [])
 
