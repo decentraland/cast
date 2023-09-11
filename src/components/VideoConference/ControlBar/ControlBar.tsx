@@ -13,6 +13,7 @@ import {
 import classNames from 'classnames'
 import { LocalAudioTrack, LocalVideoTrack, Track } from 'livekit-client'
 import { t } from 'decentraland-dapps/dist/modules/translation/utils'
+import { useMobileMediaQuery } from 'decentraland-ui/dist/components/Media/Media'
 import { Button, Popup } from 'decentraland-ui'
 import { useLayoutContext } from '../../../hooks/useLayoutContext'
 import { useMediaQuery } from '../../../hooks/useMediaQuery'
@@ -48,6 +49,7 @@ export function ControlBar({ variation, controls, ...props }: ControlBarProps) {
   } = useRoomContext()
 
   const isTooLittleSpace = useMediaQuery(`(max-width: ${isChatOpen ? 1000 : 760}px)`)
+  const isMobile = useMobileMediaQuery()
 
   const defaultVariation = isTooLittleSpace ? 'minimal' : 'verbose'
   variation ??= defaultVariation
@@ -146,7 +148,7 @@ export function ControlBar({ variation, controls, ...props }: ControlBarProps) {
               initialState={audioEnabled}
               onChange={enabled => setAudioEnabled(enabled)}
             >
-              <MicrophoneIcon enabled={audioEnabled} />
+              <MicrophoneIcon className={styles.controlMic} enabled={audioEnabled} />
             </TrackToggle>
             <div className={`lk-button-group-menu ${styles.controlBarMenuButton}`}>
               <MediaDeviceMenu
@@ -168,7 +170,7 @@ export function ControlBar({ variation, controls, ...props }: ControlBarProps) {
               initialState={videoEnabled}
               onChange={enabled => setVideoEnabled(enabled)}
             >
-              <CameraIcon enabled={videoEnabled} />
+              <CameraIcon className={styles.controlCamera} enabled={videoEnabled} />
             </TrackToggle>
             <div className={`lk-button-group-menu ${styles.controlBarMenuButton}`}>
               <MediaDeviceMenu
@@ -181,6 +183,7 @@ export function ControlBar({ variation, controls, ...props }: ControlBarProps) {
             </div>
           </div>
         )}
+
         {visibleControls.screenShare && browserSupportsScreenSharing && (
           <Popup
             position="top left"
@@ -197,7 +200,7 @@ export function ControlBar({ variation, controls, ...props }: ControlBarProps) {
             }
             trigger={
               <button className={classNames('lk-button', styles.controlBarButton, { [styles.screenShareEnabled]: isScreenShareEnabled })}>
-                <ShareScreenIcon enabled={isScreenShareEnabled} />
+                <ShareScreenIcon className={styles.controlShare} enabled={isScreenShareEnabled} />
               </button>
             }
             basic
@@ -207,23 +210,38 @@ export function ControlBar({ variation, controls, ...props }: ControlBarProps) {
             }}
           />
         )}
+
+        {isMobile && (
+          <div className={styles.ControlBarRightButtonGroup}>
+            {visibleControls.chat && (
+              <ChatToggle className={styles.chatToggleButton}>
+                {showIcon && <ChatIcon className={styles.chatToggleIcon} />}
+                {showText && 'Chat'}
+              </ChatToggle>
+            )}
+            {visibleControls.peoplePanel && <PeoplePanelToggleButton />}
+          </div>
+        )}
+
         {visibleControls.leave && (
           <DisconnectButton className={styles.disconnectButton}>
             {showIcon && <PhoneIcon />}
-            {t('control_bar.leave')}
+            {!isMobile && t('control_bar.leave')}
           </DisconnectButton>
         )}
       </div>
       <StartAudio label="Start Audio" />
-      <div className={styles.ControlBarRightButtonGroup}>
-        {visibleControls.chat && (
-          <ChatToggle className={styles.chatToggleButton}>
-            {showIcon && <ChatIcon className={styles.chatToggleIcon} />}
-            {showText && 'Chat'}
-          </ChatToggle>
-        )}
-        {visibleControls.peoplePanel && <PeoplePanelToggleButton />}
-      </div>
+      {!isMobile && (
+        <div className={styles.ControlBarRightButtonGroup}>
+          {visibleControls.chat && (
+            <ChatToggle className={styles.chatToggleButton}>
+              {showIcon && <ChatIcon className={styles.chatToggleIcon} />}
+              {showText && 'Chat'}
+            </ChatToggle>
+          )}
+          {visibleControls.peoplePanel && <PeoplePanelToggleButton />}
+        </div>
+      )}
     </div>
   )
 }
