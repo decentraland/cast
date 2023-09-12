@@ -150,15 +150,17 @@ export function ControlBar({ variation, controls, ...props }: ControlBarProps) {
             >
               <MicrophoneIcon className={styles.controlMic} enabled={audioEnabled} />
             </TrackToggle>
-            <div className={`lk-button-group-menu ${styles.controlBarMenuButton}`}>
-              <MediaDeviceMenu
-                initialSelection={audioDeviceId}
-                kind="audioinput"
-                disabled={!audioTrack}
-                tracks={{ audioinput: audioTrack }}
-                onActiveDeviceChange={(_, id) => setAudioDeviceId(id)}
-              />
-            </div>
+            {!isMobile && (
+              <div className={`lk-button-group-menu ${styles.controlBarMenuButton}`}>
+                <MediaDeviceMenu
+                  initialSelection={audioDeviceId}
+                  kind="audioinput"
+                  disabled={!audioTrack}
+                  tracks={{ audioinput: audioTrack }}
+                  onActiveDeviceChange={(_, id) => setAudioDeviceId(id)}
+                />
+              </div>
+            )}
           </div>
         )}
         {visibleControls.camera && (
@@ -172,15 +174,17 @@ export function ControlBar({ variation, controls, ...props }: ControlBarProps) {
             >
               <CameraIcon className={styles.controlCamera} enabled={videoEnabled} />
             </TrackToggle>
-            <div className={`lk-button-group-menu ${styles.controlBarMenuButton}`}>
-              <MediaDeviceMenu
-                kind="videoinput"
-                initialSelection={videoDeviceId}
-                disabled={!videoTrack}
-                tracks={{ videoinput: videoTrack }}
-                onActiveDeviceChange={(_, id) => setVideoDeviceId(id)}
-              />
-            </div>
+            {!isMobile && (
+              <div className={`lk-button-group-menu ${styles.controlBarMenuButton}`}>
+                <MediaDeviceMenu
+                  kind="videoinput"
+                  initialSelection={videoDeviceId}
+                  disabled={!videoTrack}
+                  tracks={{ videoinput: videoTrack }}
+                  onActiveDeviceChange={(_, id) => setVideoDeviceId(id)}
+                />
+              </div>
+            )}
           </div>
         )}
 
