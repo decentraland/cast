@@ -77,7 +77,8 @@
 }
 
 @media (max-width: 768px) {
-  .ConnectToSceneRoom .content :global(.dcl.field), .ConnectToSceneRoom .content :global(.dcl.select-field) {
+  .ConnectToSceneRoom .content :global(.dcl.field),
+  .ConnectToSceneRoom .content :global(.dcl.select-field) {
     min-width: auto;
   }
 
