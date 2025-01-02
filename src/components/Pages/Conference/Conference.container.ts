@@ -1,6 +1,13 @@
 import { connect } from 'react-redux'
 import { getAddress, isConnecting } from 'decentraland-dapps/dist/modules/wallet/selectors'
-import { getServer, getToken, getWorldContentServerUrl, getWorldName } from '../../../modules/conference/selector'
+import {
+  getSceneBasePosition,
+  getSceneName,
+  getServer,
+  getToken,
+  getWorldContentServerUrl,
+  getWorldName
+} from '../../../modules/conference/selector'
 import { isLoggingIn } from '../../../modules/identity/selector'
 import { RootState } from '../../../modules/reducer'
 import withRouter from '../../../utils/WithRouter'
@@ -13,7 +20,9 @@ const mapStateToProps = (state: RootState): MapStateProps => ({
   server: getServer(state),
   token: getToken(state),
   worldName: getWorldName(state),
-  worldContentServerUrl: getWorldContentServerUrl(state)
+  worldContentServerUrl: getWorldContentServerUrl(state),
+  sceneName: getSceneName(state),
+  sceneBasePosition: getSceneBasePosition(state)
 })
 
 export default withRouter(connect(mapStateToProps)(Conference))

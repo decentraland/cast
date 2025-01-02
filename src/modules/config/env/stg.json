@@ -2,5 +2,8 @@
   "CHAIN_ID": "1",
   "PEER_URL": "https://peer.decentraland.org",
   "WORLDS_CONTENT_SERVER_URL": "https://worlds-content-server.decentraland.org",
+  "PLACES_API_URL": "https://places.decentraland.today/api",
+  "COMMS_GATEKEEPER_URL": "https://comms-gatekeeper.decentraland.today",
+  "CATALYST_SERVER_URL": "https://peer.decentraland.today",
   "SEGMENT_API_KEY": "FLpPrzJ8NlZLoRDldyQz4VdRnFGtxCAb"
 }

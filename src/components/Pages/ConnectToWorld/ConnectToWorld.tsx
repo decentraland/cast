@@ -2,15 +2,13 @@ import React, { ChangeEvent, useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthIdentity } from '@dcl/crypto'
 import { t } from 'decentraland-dapps/dist/modules/translation/utils'
-import { Button, Loader, SelectField, Field, DropdownProps, Form } from 'decentraland-ui'
+import { Button, SelectField, Field, DropdownProps, Form } from 'decentraland-ui'
 import meetOnDecentralandImg from '../../../assets/images/meet-on-decentraland.png'
-import { locations } from '../../../modules/routing/locations'
 import { signedFetch } from '../../../utils/auth'
 import { DOCS_URL } from '../../../utils/constants'
 import { isErrorMessage } from '../../../utils/errors'
 import { flatFetch } from '../../../utils/flat-fetch'
 import { addServerToPreviouslyLoaded } from '../../../utils/worldServers'
-import { PageLayout } from '../../PageLayout'
 import { Props } from './ConnectToWorld.types'
 import styles from './ConnectToWorld.module.css'
 
@@ -20,7 +18,7 @@ function ConnectToWorld(props: Props) {
   const [availableServers, setAvailableServers] = useState<string[]>([])
   const [isConnectingToServer, setIsConnectingToServer] = useState(false)
 
-  const { isLoading, loggedInAddress, identity, previouslyLoadedServers, worldsContentServerUrl, onSubmitConnectForm } = props
+  const { identity, previouslyLoadedServers, worldsContentServerUrl, onSubmitConnectForm } = props
 
   const navigate = useNavigate()
 
@@ -109,12 +107,6 @@ function ConnectToWorld(props: Props) {
   }, [])
 
   useEffect(() => {
-    if (!loggedInAddress && !isLoading) {
-      navigate(locations.signIn(locations.root(worldsContentServerUrl)))
-    }
-  }, [isLoading, loggedInAddress])
-
-  useEffect(() => {
     if (previouslyLoadedServers) {
       setAvailableServers(previouslyLoadedServers)
       setSelectedServer(previouslyLoadedServers[0])
@@ -122,70 +114,64 @@ function ConnectToWorld(props: Props) {
   }, [previouslyLoadedServers, setAvailableServers])
 
   return (
-    <PageLayout>
-      {isLoading ? (
-        <Loader active />
-      ) : (
-        <div className={styles.ConnectToWorld}>
-          <div className={styles.content}>
-            <h4 className={styles.title}>{t('connect_to_world.title')}</h4>
-            <p className={styles.description}>{t('connect_to_world.description')}</p>
-            <img
-              className={styles.img}
-              src={meetOnDecentralandImg}
-              alt={t('connect_to_world.image_alt')}
-              aria-label={t('connect_to_world.image_alt')}
-            />
-            <Form className={styles.form}>
-              <div className={styles.inputContainer}>
-                <label className={styles.label} htmlFor="server">
-                  {t('connect_to_world.input_label')}
-                </label>
-                {availableServers.length > 0 ? (
-                  <SelectField
-                    value={selectedServer}
-                    options={availableServers.map(server => ({
-                      value: server,
-                      text: server
-                    }))}
-                    onAddItem={handleSelectChange}
-                    onChange={handleSelectChange}
-                    allowAdditions
-                    error={!!error}
-                    message={error}
-                  />
-                ) : (
-                  <Field
-                    name="server"
-                    value={selectedServer}
-                    onChange={handleChange}
-                    placeholder={t('connect_to_world.input_placeholder')}
-                    error={!!error}
-                    message={error}
-                    onEnter={handleClick}
-                  />
-                )}
-              </div>
-              <div className={styles.actions}>
-                <Button
-                  primary
-                  onClick={handleClick}
-                  fluid
-                  disabled={!selectedServer || isConnectingToServer}
-                  type="submit"
-                  loading={isConnectingToServer}
-                >
-                  {t('connect_to_world.cta')}
-                </Button>
-                <Button inverted fluid onClick={handleLearnMore}>
-                  {t('global.learn_more')}
-                </Button>
-              </div>
-            </Form>
+    <div className={styles.ConnectToWorld}>
+      <div className={styles.content}>
+        <h4 className={styles.title}>{t('connect_to_world.title')}</h4>
+        <p className={styles.description}>{t('connect_to_world.description')}</p>
+        <img
+          className={styles.img}
+          src={meetOnDecentralandImg}
+          alt={t('connect_to_world.image_alt')}
+          aria-label={t('connect_to_world.image_alt')}
+        />
+        <Form className={styles.form}>
+          <div className={styles.inputContainer}>
+            <label className={styles.label} htmlFor="server">
+              {t('connect_to_world.input_label')}
+            </label>
+            {availableServers.length > 0 ? (
+              <SelectField
+                value={selectedServer}
+                options={availableServers.map(server => ({
+                  value: server,
+                  text: server
+                }))}
+                onAddItem={handleSelectChange}
+                onChange={handleSelectChange}
+                allowAdditions
+                error={!!error}
+                message={error}
+              />
+            ) : (
+              <Field
+                name="server"
+                value={selectedServer}
+                onChange={handleChange}
+                placeholder={t('connect_to_world.input_placeholder')}
+                error={!!error}
+                message={error}
+                onEnter={handleClick}
+              />
+            )}
           </div>
-        </div>
-      )}
-    </PageLayout>
+          <div className={styles.actions}>
+            <Button
+              primary
+              onClick={handleClick}
+              fluid
+              disabled={!selectedServer || isConnectingToServer}
+              type="submit"
+              loading={isConnectingToServer}
+            >
+              {t('connect_to_world.cta')}
+            </Button>
+            <Button inverted fluid onClick={handleLearnMore}>
+              {t('global.learn_more')}
+            </Button>
+          </div>
+        </Form>
+      </div>
+    </div>
   )
 }
 

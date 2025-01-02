@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit'
-import { setServer, setToken, setWorldRelatedInformation } from './action'
+import { setServer, setToken, setWorldRelatedInformation, setSceneRelatedInformation } from './action'
 
 export type ConferenceState = {
   token: string
@@ -7,6 +7,12 @@ export type ConferenceState = {
   worlds: {
     contentServerUrl: string
     name: string
+  }
+  scenes: {
+    name: string
+    basePosition: { x: number; y: number }
+    entityId: string
+    catalystServerUrl: string
   }
 }
 
@@ -16,6 +22,12 @@ export const INITIAL_STATE: ConferenceState = {
   worlds: {
     contentServerUrl: '',
     name: ''
+  },
+  scenes: {
+    name: '',
+    basePosition: { x: 0, y: 0 },
+    entityId: '',
+    catalystServerUrl: ''
   }
 }
 
@@ -33,6 +45,16 @@ export const conferenceReducer = createReducer<ConferenceState>(INITIAL_STATE, b
       state.worlds = {
         contentServerUrl,
         name
+      }
+    })
+    .addCase(setSceneRelatedInformation, (state, action) => {
+      const { basePosition, name, entityId, catalystServerUrl } = action.payload
+
+      state.scenes = {
+        basePosition,
+        name,
+        entityId,
+        catalystServerUrl
       }
     })
 )

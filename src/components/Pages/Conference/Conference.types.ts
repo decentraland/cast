@@ -7,7 +7,12 @@ export type Props = {
   token?: string
   worldContentServerUrl: string
   worldName: string
+  sceneName: string
+  sceneBasePosition: { x: number; y: number }
 }
 
-export type MapStateProps = Pick<Props, 'loggedInAddress' | 'isLoading' | 'server' | 'token' | 'worldName' | 'worldContentServerUrl'>
+export type MapStateProps = Pick<
+  Props,
+  'loggedInAddress' | 'isLoading' | 'server' | 'token' | 'worldName' | 'worldContentServerUrl' | 'sceneName' | 'sceneBasePosition'
+>
 export type MapDispatch = Dispatch

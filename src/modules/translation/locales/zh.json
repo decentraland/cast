@@ -10,6 +10,14 @@
     "input_label": "世界名称",
     "input_placeholder": "example:<name>.dcl.eth"
   },
+  "connect_to_scene_room": {
+    "title": "在 Decentraland 上见面",
+    "description": "选择您想要连接的场景并开始流式传输。",
+    "image_alt": "在 Decentraland 上见面",
+    "cta": "连接",
+    "input_label": "场景名称",
+    "input_placeholder": "example:Genesis Plaza or 0,0"
+  },
   "people_panel": {
     "title": "人们",
     "subtitle": "这次会议的人",

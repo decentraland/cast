@@ -1,0 +1,89 @@
+:global(#root) {
+  height: 100%;
+}
+
+.ConnectToSceneRoom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.ConnectToSceneRoom .content {
+  background: var(--background);
+  padding: 24px 141px 50px;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 20px;
+}
+
+.ConnectToSceneRoom .content .title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0px;
+}
+
+.ConnectToSceneRoom .content .form {
+  width: 100%;
+}
+
+.ConnectToSceneRoom .content .description {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0px;
+}
+
+.ConnectToSceneRoom .content .img {
+  max-width: 260px;
+}
+
+.ConnectToSceneRoom .content .inputContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  text-align: left;
+}
+
+.ConnectToSceneRoom .content .inputContainer .label {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: 0px;
+}
+
+.ConnectToSceneRoom .content :global(.select-field.error.warning p.message) {
+  margin-bottom: 15px;
+}
+
+.ConnectToSceneRoom .content .actions {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 769px) {
+  .content :global(.SignIn.center) {
+    min-width: 700px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ConnectToSceneRoom .content :global(.dcl.field), .ConnectToSceneRoom .content :global(.dcl.select-field) {
+    min-width: auto;
+  }
+
+  .ConnectToSceneRoom .content {
+    height: 100%;
+    border-radius: unset;
+    padding: 24px;
+  }
+}

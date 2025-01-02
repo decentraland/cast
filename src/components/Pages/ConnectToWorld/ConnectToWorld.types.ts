@@ -3,15 +3,13 @@ import { AuthIdentity } from '@dcl/crypto'
 import { RouterProps } from '../../../utils/WithRouter'
 
 export type Props = {
-  loggedInAddress?: string
-  isLoading: boolean
   previouslyLoadedServers: string[] | null
   identity: AuthIdentity | null
   worldsContentServerUrl: string
   onSubmitConnectForm: (server: string, token: string, worldsContentServerUrl: string, selectedServer: string) => void
 }
 
-export type MapStateProps = Pick<Props, 'loggedInAddress' | 'isLoading' | 'previouslyLoadedServers' | 'identity' | 'worldsContentServerUrl'>
+export type MapStateProps = Pick<Props, 'previouslyLoadedServers' | 'identity' | 'worldsContentServerUrl'>
 export type MapDispatchProps = Pick<Props, 'onSubmitConnectForm'>
 export type MapDispatch = Dispatch
 

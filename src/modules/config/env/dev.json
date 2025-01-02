@@ -3,5 +3,8 @@
   "EXPLORER_URL": "https://play.decentraland.org",
   "PEER_URL": "https://peer.decentraland.org",
   "WORLDS_CONTENT_SERVER_URL": "https://worlds-content-server.decentraland.org",
+  "PLACES_API_URL": "https://places.decentraland.org/api",
+  "COMMS_GATEKEEPER_URL": "https://comms-gatekeeper.decentraland.org",
+  "CATALYST_SERVER_URL": "https://peer.decentraland.org",
   "SEGMENT_API_KEY": "FLpPrzJ8NlZLoRDldyQz4VdRnFGtxCAb"
 }

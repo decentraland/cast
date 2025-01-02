@@ -10,6 +10,14 @@
     "input_label": "World name",
     "input_placeholder": "example:<name>.dcl.eth"
   },
+  "connect_to_scene_room": {
+    "title": "Meet on Decentraland",
+    "description": "Choose the scene you want to connect to and start streaming.",
+    "image_alt": "Meet on Decentraland",
+    "cta": "Connect",
+    "input_label": "Scene Name or Coordinates",
+    "input_placeholder": "example:Genesis Plaza or 0,0"
+  },
   "people_panel": {
     "title": "People",
     "subtitle": "People in this meeting",
