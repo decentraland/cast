@@ -45,15 +45,15 @@ function ConnectToWorld(props: Props) {
 
   async function livekitConnect(identity: AuthIdentity, worldServer: string, worldName: string, ea: string | null) {
     const aboutResponse = await flatFetch(`${worldServer}/world/${worldName}/about`)
-    
+
     if (aboutResponse.status === 200) {
       let url = JSON.parse(aboutResponse.text!)
         ['comms']['adapter'].replace('fixed-adapter:', '')
         .replace('signed-login:', '')
-        .replace('get-comms-adapter', 'cast-adapter')      
-    
+        .replace('get-comms-adapter', 'cast-adapter')
+
       if (ea === 'true') {
-        url = `${url}?ea=true`    
+        url = `${url}?ea=true`
       }
 
       const response = await signedFetch(
